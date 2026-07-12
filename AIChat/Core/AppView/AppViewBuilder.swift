@@ -16,7 +16,7 @@ struct AppViewBuilder<TabbarView: View, OnboardingView: View>: View {
         ZStack {
             if showTabBar {
                 tabbarView
-                    .transition(.move(edge: .trailing))
+//                    .transition(.move(edge: .trailing))
             } else {
                 onboardingView
                     .transition(.move(edge: .leading))
@@ -27,7 +27,6 @@ struct AppViewBuilder<TabbarView: View, OnboardingView: View>: View {
 
     }
 }
-
 
 private struct PreviewView: View {
     @State private var showTabBar: Bool = false
@@ -52,7 +51,6 @@ private struct PreviewView: View {
         }
     }
 }
-
 
 #Preview {
     PreviewView()

@@ -8,14 +8,12 @@ import SwiftUI
 
 // tabbar --> signed in
 // onboarding --> signed out
-
 struct AppView: View {
     // gonna store if the user has already signed in.
-    @AppStorage("showTabbarView") var showTabBar: Bool = false
-    
+    @State var appState: AppState = AppState()
     var body: some View {
         AppViewBuilder(
-            showTabBar: showTabBar,
+            showTabBar: appState.showTabBar,
             tabbarView: {
                 TabBarView()
             },
@@ -23,15 +21,17 @@ struct AppView: View {
                 WelcomeView()
             }
         )
+        .environment(appState)
     }
 }
-
 
 #Preview("Tabbar") {
     AppViewBuilder(
         showTabBar: true,
         tabbarView: { TabBarView() },
-        onboardingView: { WelcomeView() }
+        onboardingView: {
+            WelcomeView()
+        }
     )
 }
 
