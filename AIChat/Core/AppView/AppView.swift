@@ -10,32 +10,35 @@ import SwiftUI
 // onboarding --> signed out
 
 struct AppView: View {
-    // gonna store if the user already signed in.
+    // gonna store if the user has already signed in.
     @AppStorage("showTabbarView") var showTabBar: Bool = false
+    
     var body: some View {
         AppViewBuilder(
             showTabBar: showTabBar,
             tabbarView: {
-                ZStack {
-                    Color.red.ignoresSafeArea()
-                    Text("TabBar")
-                }
+                TabBarView()
             },
             onboardingView: {
-                ZStack {
-                    Color.blue.ignoresSafeArea()
-                    Text("Onboarding")
-                }
+                WelcomeView()
             }
         )
     }
 }
 
 
-#Preview("AppView - Tabbar"){
-    AppView(showTabBar: true)
+#Preview("Tabbar") {
+    AppViewBuilder(
+        showTabBar: true,
+        tabbarView: { TabBarView() },
+        onboardingView: { WelcomeView() }
+    )
 }
 
-#Preview("AppView - Onboarding"){
-    AppView(showTabBar: false)
+#Preview("Onboarding") {
+    AppViewBuilder(
+        showTabBar: false,
+        tabbarView: { TabBarView() },
+        onboardingView: { WelcomeView() }
+    )
 }

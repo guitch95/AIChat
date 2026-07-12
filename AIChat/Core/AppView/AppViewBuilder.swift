@@ -57,3 +57,7 @@ private struct PreviewView: View {
 #Preview {
     PreviewView()
 }
+
+#Preview {
+    AppView()
+}
