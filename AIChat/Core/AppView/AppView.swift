@@ -8,8 +8,8 @@ import SwiftUI
 
 // tabbar --> signed in
 // onboarding --> signed out
+
 struct AppView: View {
-    // gonna store if the user has already signed in.
     @State var appState: AppState = AppState()
     var body: some View {
         AppViewBuilder(

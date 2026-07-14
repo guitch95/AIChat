@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProfileView: View {
-
     @State private var showSettingsView: Bool = false
     var body: some View {
         NavigationStack {
@@ -41,4 +40,5 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView()
+        .environment(AppState())
 }
