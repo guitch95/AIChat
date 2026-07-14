@@ -16,7 +16,7 @@ struct AppViewBuilder<TabbarView: View, OnboardingView: View>: View {
         ZStack {
             if showTabBar {
                 tabbarView
-//                    .transition(.move(edge: .trailing))
+                //                    .transition(.move(edge: .trailing))
             } else {
                 onboardingView
                     .transition(.move(edge: .leading))
@@ -34,16 +34,10 @@ private struct PreviewView: View {
         AppViewBuilder(
             showTabBar: showTabBar,
             tabbarView: {
-                ZStack {
-                    Color.red.ignoresSafeArea()
-                    Text("TabBar")
-                }
+                AppView()
             },
             onboardingView: {
-                ZStack {
-                    Color.blue.ignoresSafeArea()
-                    Text("Onboarding")
-                }
+                WelcomeView()
             }
         )
         .onTapGesture {
@@ -54,8 +48,4 @@ private struct PreviewView: View {
 
 #Preview {
     PreviewView()
-}
-
-#Preview {
-    AppView()
 }

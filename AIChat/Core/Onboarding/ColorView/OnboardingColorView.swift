@@ -1,0 +1,91 @@
+//
+//  OnboardingColorView.swift
+//  AIChat
+//
+//  Created by Guillaume Richard on 14/07/2026.
+//
+
+import SwiftUI
+
+struct OnboardingColorView: View {
+    @State private var selectedColor: Color?
+    let profileColors: [Color] = [
+        .red,
+        .green,
+        .orange,
+        .blue,
+        .mint,
+        .purple,
+        .cyan,
+        .teal,
+        .indigo,
+    ]
+    var body: some View {
+        ScrollView {
+            colorGrid
+                .padding(.horizontal, 24)
+        }
+        .safeAreaInset(edge: .bottom, alignment: .center, spacing: 16) {
+            ZStack {
+                if let selectedColor {
+                    ctaButton
+                        .transition(AnyTransition.move(edge: .bottom))
+                }
+            }
+            .padding(24)
+            // systemBackground gonna handle light and dark mode.
+            .background(Color(UIColor.systemBackground))
+        }
+        .animation(.bouncy, value: selectedColor)
+    }
+    
+    
+    private var colorGrid: some View {
+        LazyVGrid(
+            columns: Array(
+                repeating: GridItem(.flexible(), spacing: 16),
+                count: 3
+            ),
+            alignment: .center,
+            spacing: 16,
+            pinnedViews: .sectionFooters
+        ) {
+            Section {
+                ForEach(profileColors, id: \.self) { color in
+                    Circle()
+                        .fill(.accent)
+                        .overlay {
+                            color.clipShape(.circle).padding(
+                                selectedColor == color ? 10 : 0
+                            )
+                        }
+                        .onTapGesture {
+                            selectedColor = color
+                        }
+                }
+            } header: {
+                Text("Select a profile color")
+                    .font(.headline)
+            }
+        }
+    }
+
+    private var ctaButton: some View {
+        NavigationLink {
+            OnboardingCompletedView()
+        } label: {
+            Text("Continue")
+                .callToActionButton()
+        }
+    }
+}
+
+#Preview {
+    NavigationStack {
+        OnboardingColorView()
+    }
+}
+
+/*
+ safeAreaInset make sur that the element is always at the bottom of the device. Very useful in the case of the scrollView.
+ */

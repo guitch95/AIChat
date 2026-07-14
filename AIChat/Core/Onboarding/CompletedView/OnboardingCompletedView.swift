@@ -12,7 +12,7 @@ struct OnboardingCompletedView: View {
     
     var body: some View {
         VStack {
-            Text("Onboarding Completed! ")
+            Text("Onboarding Completed!")
                 .frame(maxHeight: .infinity)
             Button {
                 // finish onboarding and enter app!
