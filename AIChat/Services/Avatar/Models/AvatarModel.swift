@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 // Struct are Sendable because of how they are managed in Memory (Value Types)
-struct AvatarModel {
+// Much easier to work with Struct in an async/await context due to the fact that they are sendable.
+struct AvatarModel : Hashable {
 
     let avatarId: String
     let name: String?
