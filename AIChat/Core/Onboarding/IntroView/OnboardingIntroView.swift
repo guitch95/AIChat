@@ -13,15 +13,15 @@ struct OnboardingIntroView: View {
             Text(
                 "Make your own \(Text("avatars").foregroundStyle(.accent).fontWeight(.semibold)) and chat with them!\n\nHave \(Text("real conversations").foregroundStyle(.accent).fontWeight(.semibold)) with AI generated responses."
             )
-            // spacing between the line like lineSpacing.
-            .baselineOffset(6)
+
+            .baselineOffset(6) // spacing between the line like lineSpacing.
             .frame(maxHeight: .infinity)
             .padding(24)
 
             NavigationLink {
                 OnboardingColorView()
             } label: {
-                Text("Get started")
+                Text("Continue")
                     .callToActionButton()
             }
         }

@@ -20,13 +20,13 @@ struct WelcomeView: View {
 
                 ctaButton
                     .padding(16)
-                
+
                 policyLinks
 
             }
         }
     }
-    
+
     /* Sinon les computed properties pour fragmenter les Views sont largement suffisantes par contre pour un morceau qui a son propre état, qui est réutilisé, ou lourd, préfère une sous-struct View (mieux isolée et optimisée).
     */
 
@@ -36,7 +36,7 @@ struct WelcomeView: View {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
 
-            Text("Test")
+            Text("Github @guitch95")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -70,7 +70,7 @@ struct WelcomeView: View {
             ) {
                 Text("Terms of Service")
             }
-            Circle().foregroundStyle(.accent).frame(width: 4, height: 4)
+            Circle().fill(.accent).frame(width: 4, height: 4)
 
             Link(destination: URL(string: Constants.privacyPolicyUrl)!) {
                 Text("Privacy Policy")

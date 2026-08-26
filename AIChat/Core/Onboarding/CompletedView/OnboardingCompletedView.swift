@@ -10,8 +10,7 @@ import SwiftUI
 struct OnboardingCompletedView: View {
     @Environment(AppState.self) private var root
     @State private var isCompletingProfileSetup: Bool = false
-    var selectedColor: Color = .orange
-
+    var selectedColor: Color
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Setup Complete!")
@@ -36,10 +35,6 @@ struct OnboardingCompletedView: View {
     }
 
     private var ctaButton: some View {
-        Button {
-            // finish onboarding and enter app!
-            onFinishButtonPressed()
-        } label: {
             ZStack {
                 if isCompletingProfileSetup {
                     ProgressView()
@@ -49,10 +44,14 @@ struct OnboardingCompletedView: View {
                 }
             }
             .callToActionButton()
-        }
+            .anyButton(.press) {
+                // finish onboarding and enter app!
+                onFinishButtonPressed()
+            }
         // disabled the button in order to avoid mutliple registration by clicking mutliple times on it.
-        .disabled(isCompletingProfileSetup)
-    }
+            .disabled(isCompletingProfileSetup)
+        }
+
 
     func onFinishButtonPressed() {
         isCompletingProfileSetup = true

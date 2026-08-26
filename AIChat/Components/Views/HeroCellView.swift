@@ -11,7 +11,7 @@ struct HeroCellView: View {
     var title: String? = "This is some title"
     var subtitle: String? = "This is some subtitle that will go here"
     var imageName: String? = Constants.randomImage
-    
+
     var body: some View {
         ZStack {
             if let imageName {
@@ -21,31 +21,31 @@ struct HeroCellView: View {
                     .fill(.accent)
             }
         }
-        .overlay(alignment: .bottomLeading){
-            VStack(alignment: .leading, spacing: 4){
+        .overlay(alignment: .bottomLeading) {
+            VStack(alignment: .leading, spacing: 4) {
                 if let title {
                     Text(title)
                         .font(.headline)
                 }
-                
+
                 if let subtitle {
                     Text(subtitle)
                         .font(.subheadline)
                 }
             }
             .foregroundStyle(.white)
-            .padding()
+            .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
             .addingGradientBackgroundForText()
-      
+
         }
         .clipShape(.rect(cornerRadius: 16))
-        
+
     }
 }
 
 #Preview {
-    ScrollView{
+    ScrollView {
         VStack {
             HeroCellView()
                 .frame(width: 300, height: 200)

@@ -8,9 +8,7 @@
 import SwiftUI
 
 // Decoupled the cells that we pass (Content), can pass anything now and also from the datatype that we pass.(T)
-
 struct CarouselView<Content: View, T: Hashable>: View {
-
     var items: [T]
     @ViewBuilder var content: (T) -> Content
     @State private var selection: T?
@@ -20,6 +18,9 @@ struct CarouselView<Content: View, T: Hashable>: View {
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 0) {
                     ForEach(items, id: \.self) { item in
+                        // use generics to reuse it with what we want.
+                        // here in the preview the content is HeroCellView but because we use Generics
+                        // it can be anything.
                         content(item)
                             .scrollTransition(
                                 // as the user is scrolling and size is full when 95% on the screen.

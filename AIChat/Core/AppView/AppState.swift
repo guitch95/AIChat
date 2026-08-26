@@ -12,13 +12,16 @@ class AppState {
     // private -> tout le monde peut lire mais seule la classe peut la modifier. Contrôle centralisé.
     private(set) var showTabBar: Bool {
         // Bloc didSet qui s'exécute à chaque fois que showTabBar change. Quand valeur change en mémoire, sauvegarde aussi sur le disque.
+        // didSet répond à : « à chaque fois que cette valeur change, il doit se passer ça ».
         didSet {
             UserDefaults.showTabbarView = showTabBar
         }
     }
     
     // Au démarrage, l'état s'initialise avec la valeur sauvegardée sur le disque (UserDefaults.showTabbarView).
+    // De base c'est false puisqu'elle n'existe pas. Vérifier par le bool du et dans l'extension UserDefaults
     init(showTabBar: Bool = UserDefaults.showTabbarView) {
+        // donc au premier lancement showTabBar est false
         self.showTabBar = showTabBar
     }
     
@@ -26,23 +29,28 @@ class AppState {
      Comme showTabBar est en private(set), les vues ne peuvent pas écrire appState.showTabBar = true directement. Elles appellent cette méthode à la place. C'est la porte d'entrée officielle pour modifier l'état. (Et quand elle modifie showTabBar, le didSet sauvegarde tout seul.)
      */
     func updateViewState(showTabBarView: Bool) {
+        // Je fais une assignation à showTabBar du coup le didSet qui est dedans plus haut se déclenche automatiquement
         showTabBar = showTabBarView
     }
 }
 
 extension UserDefaults {
-    private struct Keys {
-        static let showTabbarView = "showTabbarView"
-    }
+    /*
+     private struct Keys {
+     static let showTabbarView = "showTabbarView"
+     }
+     */
+    
+    private static let showTabbarViewKey = "showTabbarView"
    /* - get : quand tu lis UserDefaults.showTabbarView, ça va chercher le booléen dans le stockage.
       - set : quand tu écris UserDefaults.showTabbarView = true, ça enregistre la valeur dans le stockage. Le mot-clé newValue = la valeur que tu viens d'assigner (ici true).
     */
     static var showTabbarView: Bool {
         get {
-            standard.bool(forKey: Keys.showTabbarView)
+            standard.bool(forKey: showTabbarViewKey)
         }
         set {
-            standard.set(newValue, forKey: Keys.showTabbarView)
+            standard.set(newValue, forKey: showTabbarViewKey)
         }
     }
 }

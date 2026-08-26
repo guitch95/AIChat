@@ -26,19 +26,10 @@ struct AppView: View {
 }
 
 #Preview("Tabbar") {
-    AppViewBuilder(
-        showTabBar: true,
-        tabbarView: { TabBarView() },
-        onboardingView: {
-            WelcomeView()
-        }
-    )
+    AppView(appState: AppState(showTabBar: true))
 }
 
 #Preview("Onboarding") {
-    AppViewBuilder(
-        showTabBar: false,
-        tabbarView: { TabBarView() },
-        onboardingView: { WelcomeView() }
-    )
+    AppView(appState: AppState(showTabBar: false))
+
 }

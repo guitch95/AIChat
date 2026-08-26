@@ -16,7 +16,7 @@ struct AppViewBuilder<TabbarView: View, OnboardingView: View>: View {
         ZStack {
             if showTabBar {
                 tabbarView
-                //                    .transition(.move(edge: .trailing))
+                    .transition(.move(edge: .trailing))
             } else {
                 onboardingView
                     .transition(.move(edge: .leading))

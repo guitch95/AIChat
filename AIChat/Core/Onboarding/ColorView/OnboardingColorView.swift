@@ -25,9 +25,11 @@ struct OnboardingColorView: View {
             colorGrid
                 .padding(.horizontal, 24)
         }
+        // ensure that what we pass in will always be at the bottom of the device
         .safeAreaInset(edge: .bottom, alignment: .center, spacing: 16) {
             ZStack {
                 if let selectedColor {
+                    // When a color is selected the button appears at the bottom.
                     ctaButton(selectedColor: selectedColor)
                         .transition(AnyTransition.move(edge: .bottom))
                 }
@@ -36,6 +38,7 @@ struct OnboardingColorView: View {
             // systemBackground gonna handle light and dark mode.
             .background(Color(UIColor.systemBackground))
         }
+        // animation on the change of selectedColor
         .animation(.bouncy, value: selectedColor)
         .toolbar(.hidden, for: .navigationBar)
     }
@@ -49,7 +52,7 @@ struct OnboardingColorView: View {
             ),
             alignment: .center,
             spacing: 16,
-            pinnedViews: .sectionFooters
+            pinnedViews: .sectionHeaders
         ) {
             Section {
                 ForEach(profileColors, id: \.self) { color in
