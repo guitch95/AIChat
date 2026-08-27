@@ -19,8 +19,6 @@ struct ExploreView: View {
                 featuredSection
                 categorySection
                 popularSection
-
-
             }
         }
         .navigationTitle("Explore")
