@@ -31,6 +31,15 @@ struct ChatMessageModel {
         self.dateCreated = dateCreated
     }
 
+
+    func hasBeenSeenBy(userId: String) -> Bool {
+        // make sure the array exists so that someone has already seen it
+        guard let seenByIds else {return false}
+        // si l'array existe dit moi si l'userId est dans le tableau seenById pour savoir si il l'a déjà vu.
+        return seenByIds.contains(userId)
+        // sinon ça sera false si il n'existe pas
+    }
+
     static var mock: ChatMessageModel {
         mocks[0]
     }
